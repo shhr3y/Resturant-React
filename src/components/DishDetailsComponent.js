@@ -9,7 +9,7 @@ class DishDetails extends Component {
           this.state = {};
      }
 
-     renderSelectedDish(selectedDish){
+     renderSelectedDishCard(selectedDish){
           return(
                <Card>
                     <CardImg width="100%" src={selectedDish.image} alt={selectedDish.name}/>
@@ -20,23 +20,6 @@ class DishDetails extends Component {
                </Card>
           );
      }
-
-     // renderSelectedDishComments(selectedDish){
-
-     //      const comments = selectedDish.comments.map((comment) => {
-     //           return(
-     //           <div key={comment.id}> 
-     //                <p>{comment.author}</p>
-     //           </div>
-     //           );
-     //      });
-
-     //      return(
-     //           {comments}
-     //      );
-     // }
-
-
 
      render(){
 
@@ -53,11 +36,11 @@ class DishDetails extends Component {
                     );
                });
 
-
+               
                return(
                     <div className="row">
                          <div key='selectedDish' className="col-12 col-md-5 m-1">
-                              {this.renderSelectedDish(selectedDish)}
+                              {this.renderSelectedDishCard(selectedDish)}
                          </div>
                          <div key='selectedDishComments' className="col-12 col-md-5 m-1">
                               <h4>Comments</h4><br/>
