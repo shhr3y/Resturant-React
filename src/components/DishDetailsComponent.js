@@ -31,7 +31,7 @@ class DishDetails extends Component {
                     return(
                     <div key={comment.id}> 
                          <p>{comment.comment}</p>
-                         <p>-- {comment.author} , {comment.date}</p>
+                         <p>-- {comment.author}  [<i>{new Intl.DateTimeFormat('en-US',{month:'short',year:'numeric',day:'2-digit'}).format(new Date(Date.parse(comment.date)))}</i>]</p>
                     </div>
                     );
                });
