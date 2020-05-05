@@ -37,7 +37,7 @@ function DishDetails(props){
           return(
                <div className="row">
                     <div key='selectedDish' className="col-12 col-md-5 m-1">
-                         <RenderSelectedDishCard selectedDish/>
+                         {RenderSelectedDishCard(selectedDish)}
                     </div>
                     <div key='selectedDishComments' className="col-12 col-md-5 m-1">
                          <h4>Comments</h4><br/>
