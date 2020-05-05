@@ -1,64 +1,59 @@
-import React , {Component} from 'react';
+import React from 'react';
 import {Card, CardImg, CardTitle, CardBody, CardText} from 'reactstrap';
 
-class DishDetails extends Component {
 
-     constructor(props){
-          super(props);
 
-          this.state = {};
-     }
+function RenderSelectedDishCard(selectedDish){
+     return(
+          <Card>
+               <CardImg width="100%" src={selectedDish.image} alt={selectedDish.name}/>
+               <CardBody>
+                    <CardTitle>{selectedDish.name}</CardTitle>
+                    <CardText>{selectedDish.description}</CardText>
+               </CardBody>
+          </Card>
+     );
+}
 
-     renderSelectedDishCard(selectedDish){
+function RenderSelectedDishComments(selectedDish){
+
+     const comments = selectedDish.comments.map((comment) => {
           return(
-               <Card>
-                    <CardImg width="100%" src={selectedDish.image} alt={selectedDish.name}/>
-                    <CardBody>
-                         <CardTitle>{selectedDish.name}</CardTitle>
-                         <CardText>{selectedDish.description}</CardText>
-                    </CardBody>
-               </Card>
+          <div key={comment.id}> 
+               <p>{comment.comment}</p>
+               <p>-- {comment.author}  [<i>{new Intl.DateTimeFormat('en-US',{month:'short',year:'numeric',day:'2-digit'}).format(new Date(Date.parse(comment.date)))}</i>]</p>
+          </div>
+          );
+     });
+
+     return comments;
+}
+
+function DishDetails(props){
+
+     const selectedDish = props.selectedDish;
+
+     if(selectedDish!=null){          
+          return(
+               <div className="row">
+                    <div key='selectedDish' className="col-12 col-md-5 m-1">
+                         <RenderSelectedDishCard selectedDish/>
+                    </div>
+                    <div key='selectedDishComments' className="col-12 col-md-5 m-1">
+                         <h4>Comments</h4><br/>
+                         {RenderSelectedDishComments(selectedDish)}
+                    </div>
+               </div>
+               
           );
      }
-
-     render(){
-
-          const selectedDish = this.props.selectedDish;
-
-          if(selectedDish!=null){
-
-               const comments = selectedDish.comments.map((comment) => {
-                    return(
-                    <div key={comment.id}> 
-                         <p>{comment.comment}</p>
-                         <p>-- {comment.author}  [<i>{new Intl.DateTimeFormat('en-US',{month:'short',year:'numeric',day:'2-digit'}).format(new Date(Date.parse(comment.date)))}</i>]</p>
-                    </div>
-                    );
-               });
-
-               
-               return(
-                    <div className="row">
-                         <div key='selectedDish' className="col-12 col-md-5 m-1">
-                              {this.renderSelectedDishCard(selectedDish)}
-                         </div>
-                         <div key='selectedDishComments' className="col-12 col-md-5 m-1">
-                              <h4>Comments</h4><br/>
-                              {comments}
-                         </div>
-                    </div>
-                    
-               );
-          }
-          else{
-               return(
-                    <div>
-                    </div>
-               );
-          }
+     else{
+          return(
+               <div>
+               </div>
+          );
      }
-
-
 }
+
 
 export default DishDetails;
