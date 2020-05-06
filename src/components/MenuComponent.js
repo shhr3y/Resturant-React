@@ -3,9 +3,11 @@ import { Card,CardImg,CardImgOverlay,CardTitle } from 'reactstrap';
 
 
 
+
+
 function RenderDishCards(dish,props){
      return(
-          <Card onClick={()=>props.onClick(dish.id)} onDoubleClick={()=>props.onClick(null)}>
+          <Card onClick={()=>props.onClick(dish.id)}>
                <CardImg width="100%"  src={dish.image} alt={dish.name}/>
                <CardImgOverlay>
                     <CardTitle>{dish.name}</CardTitle>
@@ -26,7 +28,7 @@ function Menu(props) {
 
      return (
           <div className="row">
-               {menu}      
+               {menu}   
           </div>
      );
 }

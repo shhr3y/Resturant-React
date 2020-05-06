@@ -29,7 +29,7 @@ function RenderSelectedDishComments(selectedDish){
      return comments;
 }
 
-function DishDetails(props){
+function DishDetail(props){
 
      const selectedDish = props.selectedDish;
 
@@ -56,4 +56,4 @@ function DishDetails(props){
 }
 
 
-export default DishDetails;
+export default DishDetail;
