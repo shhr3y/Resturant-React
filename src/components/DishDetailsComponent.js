@@ -1,6 +1,6 @@
 import React from 'react';
-import {Card, CardImg, CardTitle, CardBody, CardText} from 'reactstrap';
-
+import {Card, CardImg, CardTitle, CardBody, CardText, Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 
 function RenderSelectedDishCard(selectedDish){
@@ -15,9 +15,9 @@ function RenderSelectedDishCard(selectedDish){
      );
 }
 
-function RenderSelectedDishComments(selectedDish){
+function RenderSelectedDishComments(comments){
 
-     const comments = selectedDish.comments.map((comment) => {
+     const dishComments = comments.map((comment) => {
           return(
           <div key={comment.id}> 
                <p>{comment.comment}</p>
@@ -26,25 +26,37 @@ function RenderSelectedDishComments(selectedDish){
           );
      });
 
-     return comments;
+     return dishComments;
 }
 
 function DishDetail(props){
 
-     const selectedDish = props.selectedDish;
+     const selectedDish = props.dish;
+     const selectedComment = props.comment;
 
      if(selectedDish!=null){          
           return(
-               <div className="row">
-                    <div key='selectedDish' className="col-12 col-md-5 m-1">
-                         {RenderSelectedDishCard(selectedDish)}
-                    </div>
-                    <div key='selectedDishComments' className="col-12 col-md-5 m-1">
-                         <h4>Comments</h4><br/>
-                         {RenderSelectedDishComments(selectedDish)}
+               <div>
+                    <Breadcrumb>
+                         <div className='container'>
+                              <div className="row">
+                                   <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                                   <BreadcrumbItem active>{selectedDish.name}</BreadcrumbItem>
+                              </div>
+                         </div>
+                    </Breadcrumb>
+                    <div className="container">
+                         <div className="row">
+                              <div key='selectedDish' className="col-12 col-md-5 m-1">
+                                   {RenderSelectedDishCard(selectedDish)}
+                              </div>
+                              <div key='selectedDishComments' className="col-12 col-md-5 m-1">
+                                   <h4>Comments</h4><br/>
+                                   {RenderSelectedDishComments(selectedComment)}
+                              </div>
+                         </div>
                     </div>
                </div>
-               
           );
      }
      else{
