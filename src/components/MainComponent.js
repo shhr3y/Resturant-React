@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
 import Header from './HeaderComponent';
-import Menu from './MenuComponent'; 
-import Footer from './FooterComponent';
 import Home from './HomeComponent';
-import Contact from './ContactComponent';
+import Menu from './MenuComponent'; 
 import DishDetail from './DishDetailsComponent';
+import About from './AboutComponent';
+import Contact from './ContactComponent';
+import Footer from './FooterComponent';
 
 import { DISHES } from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
@@ -23,8 +24,6 @@ class Main extends Component {
       comments : COMMENTS,
       promotions : PROMOTIONS,
       leaders : LEADERS,
-
-      selectedDishID : null,
     }
 
   }
@@ -61,10 +60,11 @@ class Main extends Component {
      <div>
           <Header/>
             <Switch>
-              <Route path="/home" component={HomePage}/>      {/* TYPE  */}
+              <Route path="/home" component={HomePage}/>      {/* TYPE 1 */}
               <Route path = "/contactus" component={Contact}/>      {/* TYPE 3 */}
               <Route exact path="/menu" component={ ()=> <div><Menu dishes={this.state.dishes}/></div>}/>     {/* TYPE 2 */}
               <Route path="/menu/:dishID" component={dishWithID}/>
+              <Route path="/aboutus" component={()=> <About leaders={this.state.leaders}/>}/>
               <Redirect to="/home" />
             </Switch>
           <Footer/>

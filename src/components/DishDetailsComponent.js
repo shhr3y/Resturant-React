@@ -19,10 +19,22 @@ function RenderSelectedDishComments(comments){
 
      const dishComments = comments.map((comment) => {
           return(
-          <div key={comment.id}> 
-               <p>{comment.comment}</p>
-               <p>-- {comment.author}  [<i>{new Intl.DateTimeFormat('en-US',{month:'short',year:'numeric',day:'2-digit'}).format(new Date(Date.parse(comment.date)))}</i>]</p>
-          </div>
+
+     <div key={comment.id} className='mt-3'> 
+          <Card>
+               <CardBody className="bg-faded">
+                    <blockquote className="blockquote">
+                    <p className="mb-0">{comment.comment}</p>
+                         <footer className="blockquote-footer">{comment.author},
+                         <cite title="Source Title">{new Intl.DateTimeFormat('en-US',{month:'short',year:'numeric',day:'2-digit'}).format(new Date(Date.parse(comment.date)))}</cite>
+                         </footer>
+                    </blockquote>
+               </CardBody>
+          </Card>
+     </div>
+
+
+
           );
      });
 
@@ -46,12 +58,12 @@ function DishDetail(props){
                          </div>
                     </Breadcrumb>
                     <div className="container">
-                         <div className="row">
+                         <div className="row row-content">
                               <div key='selectedDish' className="col-12 col-md-5 m-1">
                                    {RenderSelectedDishCard(selectedDish)}
                               </div>
                               <div key='selectedDishComments' className="col-12 col-md-5 m-1">
-                                   <h4>Comments</h4><br/>
+                                   <h4>Comments</h4>
                                    {RenderSelectedDishComments(selectedComment)}
                               </div>
                          </div>

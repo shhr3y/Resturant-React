@@ -40,9 +40,9 @@ function Menu(props) {
                </Breadcrumb>   
                <div className="container">
                     <div>
-                         <br/><h4>Menu</h4><hr/>
+                         <br/><h3>Menu</h3><hr/>
                     </div>
-                    <div className="row">
+                    <div className="row row-content">
                          {menu}   
                     </div>
                </div>
