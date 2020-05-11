@@ -1,7 +1,7 @@
 import React, {} from 'react';
 import { Card,CardImg,CardImgOverlay,CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import {Link} from 'react-router-dom';
-
+import {Loading} from './LoadingComponent';
 
 
 
@@ -20,7 +20,7 @@ function RenderDishCards(dish){
 
 function Menu(props) {
      
-     const menu = props.dishes.map((dish) => {
+     const menu = props.dishes.dishes.map((dish) => {
           return(
                <div key={dish.id} className="col-12 col-md-5 m-1">
                          {RenderDishCards(dish)}    
@@ -28,28 +28,49 @@ function Menu(props) {
           );
      });
 
-     return (
-          <div>
-               <Breadcrumb>
-                    <div className="container">
-                         <div className="row">
-                              <BreadcrumbItem><Link to="home"> Home</Link></BreadcrumbItem>
-                              <BreadcrumbItem active>Menu</BreadcrumbItem>
-                         </div>
-                    </div>
-               </Breadcrumb>   
-               
-               <div className="container">
-                    <div>
-                         <br/><h3>Menu</h3><hr/>
-                    </div>
-                    <div className="row row-content">
-                         {menu}   
+     if(props.dishes.isLoading){
+          return(
+               <div className='container'>
+                    <div className='row'>
+                         <Loading/>
                     </div>
                </div>
-          </div>
+          );
+     }
+     else if(props.dishes.errMess){
+          return(
+               <div className='container'>
+                    <div className='row'>
+                         <h4>{props.dishes.errMess}</h4>
+                    </div>
+               </div>
+          );
+     }
 
-     );
+     else{
+          return (
+               <div>
+                    <Breadcrumb>
+                         <div className="container">
+                              <div className="row">
+                                   <BreadcrumbItem><Link to="home"> Home</Link></BreadcrumbItem>
+                                   <BreadcrumbItem active>Menu</BreadcrumbItem>
+                              </div>
+                         </div>
+                    </Breadcrumb>   
+                    
+                    <div className="container">
+                         <div>
+                              <br/><h3>Menu</h3><hr/>
+                         </div>
+                         <div className="row row-content">
+                              {menu}   
+                         </div>
+                    </div>
+               </div>
+     
+          );
+     }
 }
 
 

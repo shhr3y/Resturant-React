@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Card, CardImg, CardTitle, CardBody, CardText, Breadcrumb, BreadcrumbItem,Button,} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import CommentForm from './CommentFormComponent'
-
+import {Loading} from './LoadingComponent'
 
 class DishDetail extends Component{
 
@@ -73,7 +73,25 @@ class DishDetail extends Component{
           const selectedDish = this.props.dish;
           const selectedComment = this.props.comment;
 
-          if(selectedDish!=null){          
+          if(this.props.isLoading){
+               return(
+                    <div className='container'>
+                         <div className='row'>
+                              <Loading/>
+                         </div>
+                    </div>
+               );
+          }
+          else if(this.props.errMess){
+               return(
+                    <div className='container'>
+                         <div className='row'>
+                              <h4>{this.props.errMess}</h4>
+                         </div>
+                    </div>
+               );
+          }
+          else if(selectedDish!=null){          
                return(
                     <div>
                          <Breadcrumb>
