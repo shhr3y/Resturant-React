@@ -96,7 +96,12 @@ class DishDetail extends Component{
                                    </div>
                               </div>
                          </div>
-                         <CommentForm isOpen={this.state.isModalOpen} toggle={this.toggleModal} />
+                         <CommentForm 
+                              isOpen={this.state.isModalOpen} 
+                              toggle={this.toggleModal} 
+                              selectedDishID={selectedDish.id} 
+                              addComment={this.props.addComment} 
+                         />
                     </div>
                );
           }

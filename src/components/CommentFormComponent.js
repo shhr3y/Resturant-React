@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {FormGroup,Form,Label,Input,Button, Modal,ModalBody,ModalHeader,Row,Col} from 'reactstrap'
+import {Label,Button, Modal,ModalBody,ModalHeader,Row,Col} from 'reactstrap'
 import { Control,LocalForm, Errors } from 'react-redux-form';
 
 
@@ -29,8 +29,8 @@ class CommentForm extends Component{
      }
 
      handleSubmit(values){
-          console.log("Current State is :"+JSON.stringify(values));
-          alert("Current State is :"+JSON.stringify(values));
+          this.toggleModal();
+          this.props.addComment(this.props.selectedDishID,values.rating,values.name,values.comment);
       }
 
      render(){ 
