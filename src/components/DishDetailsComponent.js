@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card, CardImg, CardTitle, CardBody, CardText, Breadcrumb, BreadcrumbItem,Button,Modal, ModalHeader, ModalBody,Form, FormGroup, Label, Input} from 'reactstrap';
+import {Card, CardImg, CardTitle, CardBody, CardText, Breadcrumb, BreadcrumbItem,Button,} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import CommentForm from './CommentFormComponent'
 
