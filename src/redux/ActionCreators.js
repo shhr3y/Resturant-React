@@ -16,8 +16,21 @@ export const fetchDishes = () => (dispatch) => {
      dispatch(dishesLoading(true));
 
      return fetch(baseURL+'dishes')
+               .then(response =>{
+                    if(response.ok){
+                         return response;
+                    }else{
+                         var error = new Error('Error '+response.status+': '+response.statusText);
+                         error.response = response;
+                         throw error;
+                    }
+               },error => {
+                    var errmess = new Error(error.message);
+                    throw errmess;
+               })
                .then(response => response.json())
-               .then(dishes => dispatch(addDishes(dishes)));
+               .then(dishes => dispatch(addDishes(dishes)))
+               .catch(error => dispatch(dishesFailed(error.message)));
 }
 
 export const dishesLoading = ()=>({
@@ -26,9 +39,9 @@ export const dishesLoading = ()=>({
 })
 
 
-export const dishesFailed = ()=>({
+export const dishesFailed = (errMess)=>({
      type: ActionTypes.DISHES_FAILED,
-     payload: "errMess"
+     payload: errMess
 })
 
 export const addDishes =(dishes)=>({
@@ -41,14 +54,27 @@ export const addDishes =(dishes)=>({
 export const fetchComments = () => (dispatch) => {
 
      return fetch(baseURL+'comments')
+               .then(response =>{
+                    if(response.ok){
+                         return response;
+                    }else{
+                         var error = new Error('Error '+response.status+': '+response.statusText);
+                         error.response = response;
+                         throw error;
+                    }
+               },error => {
+                    var errmess = new Error(error.message);
+                    throw errmess;
+               })
                .then(response => response.json())
-               .then(comments => dispatch(addComments(comments)));
+               .then(comments => dispatch(addComments(comments)))
+               .catch(error => dispatch(commentsFailed(error.message)));
 }
 
 
-export const commentFailed = ()=>({
+export const commentsFailed = (errMess)=>({
      type: ActionTypes.COMMENTS_FAILED,
-     payload: "errMess"
+     payload: errMess
 })
 
 export const addComments =(comments)=>({
@@ -62,8 +88,21 @@ export const fetchPromotions = () => (dispatch) => {
      dispatch(promotionsLoading(true));
 
      return fetch(baseURL+'promotions')
+               .then(response =>{
+                    if(response.ok){
+                         return response;
+                    }else{
+                         var error = new Error('Error '+response.status+': '+response.statusText);
+                         error.response = response;
+                         throw error;
+                    }
+               },error => {
+                    var errmess = new Error(error.message);
+                    throw errmess;
+               })
                .then(response => response.json())
-               .then(promotions => dispatch(addPromotions(promotions)));
+               .then(promotions => dispatch(addPromotions(promotions)))
+               .catch(error => dispatch(promotionsFailed(error.message)));
 }
 
 export const promotionsLoading = ()=>({
@@ -71,9 +110,9 @@ export const promotionsLoading = ()=>({
 
 })
 
-export const promotionFailed = ()=>({
+export const promotionsFailed = (errMess)=>({
      type: ActionTypes.PROMOS_FAILED,
-     payload: "errMess"
+     payload: errMess
 })
 
 export const addPromotions =(promotions)=>({
@@ -87,8 +126,21 @@ export const fetchLeaders = () => (dispatch) => {
      dispatch(leadersLoading(true));
 
      return fetch(baseURL+'leaders')
+               .then(response =>{
+                    if(response.ok){
+                         return response;
+                    }else{
+                         var error = new Error('Error '+response.status+': '+response.statusText);
+                         error.response = response;
+                         throw error;
+                    }
+               },error => {
+                    var errmess = new Error(error.message);
+                    throw errmess;
+               })
                .then(response => response.json())
-               .then(leaders => dispatch(addLeaders(leaders)));
+               .then(leaders => dispatch(addLeaders(leaders)))
+               .catch(error => dispatch(leadersFailed(error.message)));
 }
 
 export const leadersLoading = ()=>({
@@ -96,9 +148,9 @@ export const leadersLoading = ()=>({
 
 })
 
-export const leadersFailed = ()=>({
+export const leadersFailed = (errMess)=>({
      type: ActionTypes.LEADERS_FAILED,
-     payload: "errMess"
+     payload: errMess
 })
 
 export const addLeaders =(leaders)=>({
