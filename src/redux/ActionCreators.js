@@ -1,5 +1,4 @@
 import * as ActionTypes from './ActionTypes'
-import { DISHES } from '../shared/dishes'
 import {baseURL} from '../shared/baseURL';
 
 export const addComment = (dishID,rating,author,comment) => ({
@@ -72,7 +71,6 @@ export const promotionsLoading = ()=>({
 
 })
 
-
 export const promotionFailed = ()=>({
      type: ActionTypes.PROMOS_FAILED,
      payload: "errMess"
@@ -81,4 +79,29 @@ export const promotionFailed = ()=>({
 export const addPromotions =(promotions)=>({
      type: ActionTypes.ADD_PROMOS,
      payload: promotions
+})
+
+
+//LEADERS
+export const fetchLeaders = () => (dispatch) => {
+     dispatch(leadersLoading(true));
+
+     return fetch(baseURL+'leaders')
+               .then(response => response.json())
+               .then(leaders => dispatch(addLeaders(leaders)));
+}
+
+export const leadersLoading = ()=>({
+     type: ActionTypes.LEADERS_LOADING,
+
+})
+
+export const leadersFailed = ()=>({
+     type: ActionTypes.LEADERS_FAILED,
+     payload: "errMess"
+})
+
+export const addLeaders =(leaders)=>({
+     type: ActionTypes.ADD_LEADERS,
+     payload: leaders
 })

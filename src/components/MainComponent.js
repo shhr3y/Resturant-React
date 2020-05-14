@@ -10,7 +10,7 @@ import Footer from './FooterComponent';
 
 import { Switch, Route, Redirect ,withRouter} from 'react-router-dom';
 import { connect } from 'react-redux'
-import {addComment,fetchDishes, fetchPromotions, fetchComments} from '../redux/ActionCreators'
+import {addComment,fetchDishes, fetchPromotions, fetchComments,fetchLeaders} from '../redux/ActionCreators'
 import { actions } from 'react-redux-form';
 
 
@@ -30,6 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchDishes: () => {dispatch(fetchDishes())},
   fetchPromotions: () => {dispatch(fetchPromotions())},
   fetchComments: () => {dispatch(fetchComments())},
+  fetchLeaders: () => {dispatch(fetchLeaders())},
 
 
 })
@@ -41,6 +42,7 @@ class Main extends Component {
     this.props.fetchDishes();
     this.props.fetchPromotions();
     this.props.fetchComments();
+    this.props.fetchLeaders();
   }
 
 
@@ -59,7 +61,9 @@ class Main extends Component {
             promotionsLoading = {this.props.promotions.isLoading}
             promotionsErrMess = {this.props.promotions.errMess}
             //Leaders
-            featuredLeader = {this.props.leaders.filter((leader)=> leader.featured===true)[0]}
+            featuredLeader = {this.props.leaders.leaders.filter((leader)=> leader.featured===true)[0]}
+            leadersLoading = {this.props.leaders.isLoading}
+            leadersErrMess = {this.props.leaders.errMess}
           />
         </div>
       );
@@ -90,7 +94,7 @@ class Main extends Component {
               <Route path = "/contactus" component={()=><Contact resetFeedbackForm={this.props.resetFeedbackForm}/>}/>    
               <Route exact path="/menu" component={ ()=> <div><Menu dishes={this.props.dishes}/></div>}/>     {/* TYPE 2 */}
               <Route path="/menu/:dishID" component={dishWithID}/>
-              <Route path="/aboutus" component={()=> <About leaders={this.props.leaders}/>}/>
+              <Route path="/aboutus" component={()=> <About leaders={this.props.leaders.leaders}/>}/>
               <Redirect to="/home" />
             </Switch>
           <Footer/>
