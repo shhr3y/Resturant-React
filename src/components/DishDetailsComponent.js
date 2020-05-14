@@ -119,7 +119,7 @@ class DishDetail extends Component{
                               isOpen={this.state.isModalOpen} 
                               toggle={this.toggleModal} 
                               selectedDishID={selectedDish.id} 
-                              addComment={this.props.addComment} 
+                              postComment={this.props.postComment} 
                          />
                     </div>
                );
