@@ -3,6 +3,7 @@ import {Card, CardImg, CardTitle, CardBody, CardText, Breadcrumb, BreadcrumbItem
 import {Link} from 'react-router-dom';
 import CommentForm from './CommentFormComponent'
 import {Loading} from './LoadingComponent'
+import { baseURL } from '../shared/baseURL';
 
 class DishDetail extends Component{
 
@@ -22,7 +23,7 @@ class DishDetail extends Component{
           return(
                <div className='mt-3'> 
                     <Card>
-                         <CardImg width="100%" src={selectedDish.image} alt={selectedDish.name}/>
+                         <CardImg width="100%" src={ baseURL+ selectedDish.image} alt={selectedDish.name}/>
                          <CardBody>
                               <CardTitle>{selectedDish.name}</CardTitle>
                               <CardText>{selectedDish.description}</CardText>
