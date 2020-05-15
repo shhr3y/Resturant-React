@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import CommentForm from './CommentFormComponent'
 import {Loading} from './LoadingComponent'
 import { baseURL } from '../shared/baseURL';
+import { FadeTransform , Fade , Stagger} from 'react-animation-components';
 
 class DishDetail extends Component{
 
@@ -22,13 +23,15 @@ class DishDetail extends Component{
      RenderSelectedDishCard(selectedDish){
           return(
                <div className='mt-3'> 
-                    <Card>
-                         <CardImg width="100%" src={ baseURL+ selectedDish.image} alt={selectedDish.name}/>
-                         <CardBody>
-                              <CardTitle>{selectedDish.name}</CardTitle>
-                              <CardText>{selectedDish.description}</CardText>
-                         </CardBody>
-                    </Card>
+                    <FadeTransform in tranformProps={{exitTransform: 'scale(0.5) translateY(-50%)'}}>
+                         <Card>
+                              <CardImg width="100%" src={ baseURL+ selectedDish.image} alt={selectedDish.name}/>
+                              <CardBody>
+                                   <CardTitle>{selectedDish.name}</CardTitle>
+                                   <CardText>{selectedDish.description}</CardText>
+                              </CardBody>
+                         </Card>
+                    </FadeTransform>
                </div>
           );
      }
@@ -37,18 +40,20 @@ class DishDetail extends Component{
      
           var dishComments = comments.map((comment) => {
                return(
-                    <div key={comment.id} className='mt-3'> 
-                         <Card>
-                              <CardBody className="bg-faded">
-                                   <blockquote className="blockquote">
-                                   <p className="mb-0">{comment.comment}</p>
-                                        <footer className="blockquote-footer">{comment.author},
-                                        <cite title="Source Title">{new Intl.DateTimeFormat('en-US',{month:'short',year:'numeric',day:'2-digit'}).format(new Date(Date.parse(comment.date)))}</cite>
-                                        </footer>
-                                   </blockquote>
-                              </CardBody>
-                         </Card>
-                    </div>
+                    <Fade in>                         
+                         <div key={comment.id} className='mt-3'> 
+                              <Card>
+                                   <CardBody className="bg-faded">
+                                        <blockquote className="blockquote">
+                                        <p className="mb-0">{comment.comment}</p>
+                                             <footer className="blockquote-footer">{comment.author},
+                                             <cite title="Source Title">{new Intl.DateTimeFormat('en-US',{month:'short',year:'numeric',day:'2-digit'}).format(new Date(Date.parse(comment.date)))}</cite>
+                                             </footer>
+                                        </blockquote>
+                                   </CardBody>
+                              </Card>
+                         </div>
+                    </Fade>
                );
           });
      
