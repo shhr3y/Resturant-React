@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import CommentForm from './CommentFormComponent'
 import {Loading} from './LoadingComponent'
 import { baseURL } from '../shared/baseURL';
-import { FadeTransform , Fade , Stagger} from 'react-animation-components';
+import { FadeTransform , Fade} from 'react-animation-components';
 
 class DishDetail extends Component{
 
