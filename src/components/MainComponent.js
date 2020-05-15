@@ -94,7 +94,7 @@ class Main extends Component {
               <CSSTransition key={this.props.location.key} classNames='page' timeout={300}>
                 <Switch>
                   <Route path="/home" component={HomePage}/>      {/* TYPE 1 */}
-                  <Route exact path="/aboutus" component={()=> <About leaders={this.props.leaders.leaders}/>}/>
+                  <Route exact path="/aboutus" component={()=> <About leaders={this.props.leaders}/>}/>
                   <Route exact path="/menu" component={ ()=> <div><Menu dishes={this.props.dishes}/></div>}/>     {/* TYPE 2 */}
                   <Route exact path = "/contactus" component={()=><Contact resetFeedbackForm={this.props.resetFeedbackForm}/>}/>    
                   <Route path="/menu/:dishID" component={dishWithID}/>
